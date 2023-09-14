@@ -1,17 +1,13 @@
-package com.zx;
+package com.zx.shoppingwebfront;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ShoopingwebBackApplication {
-
-
-
+public class ShoppingwebFrontApplication {
 
     public static void main(String[] args) {
-
-        SpringApplication.run(ShoopingwebBackApplication.class, args);
+        SpringApplication.run(ShoppingwebFrontApplication.class, args);
     }
 
 }
