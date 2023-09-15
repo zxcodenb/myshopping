@@ -16,7 +16,7 @@ spring:
 # 整合mybatis-plus
 mybatis-plus:
   #如果mapper映射文件与mapper接口不在同一级那么需要进行制定
-  mapper-locations: classpath*:mapper/*.xml
+#  mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: com.zx.pojo
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

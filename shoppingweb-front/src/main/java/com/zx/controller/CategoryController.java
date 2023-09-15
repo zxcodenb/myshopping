@@ -1,7 +1,7 @@
 package com.zx.controller;
 
 
-import com.zx.CateGoryService;
+import com.zx.CategoryService;
 import com.zx.pojo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,19 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("categorys")
-public class CateGoryController {
+@RequestMapping("categories")
+public class CategoryController {
 
     @Autowired
-    private CateGoryService cateGoryService;
+    private CategoryService cateGoryService;
 
 
     @GetMapping
-    public ResultData selAll(){
+    public ResultData selAllcategory(){
 
-        ResultData resultData = cateGoryService.selAllCareGory();
+        ResultData resultData = cateGoryService.selectCateGory();
 
         return resultData;
+
     }
 
 }

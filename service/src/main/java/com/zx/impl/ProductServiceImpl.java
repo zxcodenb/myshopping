@@ -3,6 +3,7 @@ package com.zx.impl;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zx.ProductService;
 import com.zx.mapper.ProductMapper;
+import com.zx.pojo.Product;
 import com.zx.pojo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,12 @@ public class ProductServiceImpl implements ProductService {
 
 
         return new ResultData(0,"查询失败");
+    }
+
+    @Override
+    public Product selOne(int id) {
+        Product product = productMapper.selOne(id);
+
+        return product;
     }
 }

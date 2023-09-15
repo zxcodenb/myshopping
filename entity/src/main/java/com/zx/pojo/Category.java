@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -20,6 +21,10 @@ import java.io.Serializable;
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+
+//    one to many
+    private List<Category> categoryList;
 
     /**
      * 主键 分类id主键
