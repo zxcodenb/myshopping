@@ -1,7 +1,7 @@
-package com.zx.shoppingwebfront.controller;
+package com.zx.controller;
 
 
-import com.zx.CategoryService;
+import com.zx.CateGoryService;
 import com.zx.pojo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,23 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("categorys")
-public class categoryController {
+public class CateGoryController {
 
     @Autowired
-    private CategoryService categoryService;
-
+    private CateGoryService cateGoryService;
 
 
     @GetMapping
-    public ResultData allCategory(){
+    public ResultData selAll(){
 
-        ResultData resultData = categoryService.selAllCategory();
+        ResultData resultData = cateGoryService.selAllCareGory();
 
         return resultData;
-
     }
-
-
-
 
 }
