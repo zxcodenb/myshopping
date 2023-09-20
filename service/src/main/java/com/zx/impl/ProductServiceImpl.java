@@ -1,5 +1,6 @@
 package com.zx.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zx.ProductService;
 import com.zx.mapper.ProductMapper;
@@ -7,6 +8,8 @@ import com.zx.pojo.Product;
 import com.zx.pojo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -41,4 +44,23 @@ public class ProductServiceImpl implements ProductService {
 
         return product;
     }
+
+    @Override
+    public ResultData selectBycateGoryId(int categoryId, int pageNum, int pageSize) {
+
+        Page page = new Page(pageNum,pageSize);
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("category_id",categoryId);
+        productMapper.selectPage(page,queryWrapper);
+
+        if (page.getRecords() != null && page.getRecords().size() > 0){
+            return new ResultData(1,"ok",page);
+        }
+
+
+        return new ResultData(0,"no");
+
+    }
+
+
 }
