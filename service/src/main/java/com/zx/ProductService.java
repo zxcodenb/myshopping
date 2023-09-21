@@ -12,4 +12,6 @@ public interface ProductService {
     Product selOne(int id);
 
     ResultData selectBycateGoryId(int categoryId , int pageNum,int pageSize);
+
+    ResultData allProImg();
 }

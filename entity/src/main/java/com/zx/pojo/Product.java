@@ -68,5 +68,10 @@ public class Product implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+*")
     private LocalDateTime updateTime;
 
+    //商品图片
+    private ProductImg productImg;
+
+
+
 
 }

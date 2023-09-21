@@ -62,5 +62,17 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
+    @Override
+    public ResultData allProImg() {
+
+        List<Product> productList = productMapper.allProImg();
+
+        if (productList != null && productList.size() > 0 ){
+            return new ResultData(1,"ok",productList);
+        }
+
+        return new ResultData(0,"no");
+    }
+
 
 }

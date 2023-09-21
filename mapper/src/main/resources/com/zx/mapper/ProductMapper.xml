@@ -10,4 +10,30 @@
         select * from product  where product_id = #{id};
     </select>
 
+
+
+
+    <resultMap id="AllProductImg" type="product">
+        <id property="productId" column="product_id"/>
+        <result property="productName" column="product_name"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="soldNum" column="sold_num"/>
+        <association property="productImg" javaType="com.zx.pojo.ProductImg">
+            <id property="id" column="id"/>
+            <result property="itemId" column="item_id"/>
+            <result property="url" column="url"/>
+            <result property="isMain" column="is_main"/>
+        </association>
+    </resultMap>
+
+    <select id="allProImg" resultMap="AllProductImg">
+        select
+            product_id,product_name,category_id,sold_num,id,item_id,url,is_main
+        from product,product_img
+        where item_id = product_id
+          and   is_main = 1
+        order by sold_num desc
+        ;
+    </select>
+
 </mapper>
