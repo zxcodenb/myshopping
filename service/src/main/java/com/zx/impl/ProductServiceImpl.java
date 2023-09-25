@@ -3,9 +3,8 @@ package com.zx.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zx.ProductService;
-import com.zx.mapper.ProductMapper;
-import com.zx.pojo.Product;
-import com.zx.pojo.ResultData;
+import com.zx.mapper.*;
+import com.zx.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +16,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductMapper productMapper;
+    @Autowired
+    private ProductSkuMapper productSkuMapper;
+    @Autowired
+    private ProductParamsMapper productParamsMapper;
+    @Autowired
+    private ProductImgMapper productImgMapper;
+    @Autowired
+    private ProductCommentsMapper productCommentsMapper;
 
     @Override
     public ResultData selectByPage(int pageNum, int pageSize) {
@@ -39,10 +46,30 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product selOne(int id) {
-        Product product = productMapper.selOne(id);
+    public ResultData selProductByDetail(int productId) {
+        //根据商品id查询商品信息
+        Product product = productMapper.selectById(productId);
+        //根据商品id查询商品sku
+        QueryWrapper<ProductSku> queryWrapperSku = new QueryWrapper<>();
+        queryWrapperSku.eq("product_id",productId);
+        List<ProductSku> productSkuList = productSkuMapper.selectList(queryWrapperSku);
+        //根据商品id查询图片信息
+//        QueryWrapper<ProductImg> queryWrapperImg = new QueryWrapper<>();
+//        queryWrapperImg.eq("item_id",productId);
+//        List<ProductImg> productImgList = productImgMapper.selectList(queryWrapperImg);
+        List<ProductImg> productImgList = productImgMapper.selImgById(productId);
+        //根据商品id查询评论信息
+        QueryWrapper<ProductComments> queryWrapperComments = new QueryWrapper<>();
+        queryWrapperComments.eq("product_id",productId);
+        List<ProductComments> productCommentsList = productCommentsMapper.selectList(queryWrapperComments);
+        //根据商品id查询参数信息
+        QueryWrapper<ProductParams> queryWrapperParams = new QueryWrapper<>();
+        queryWrapperParams.eq("product_id",productId);
+        ProductParams productParams = productParamsMapper.selectOne(queryWrapperParams);
 
-        return product;
+        ProductDetail productDetail = new ProductDetail(product,productSkuList,productImgList,productCommentsList,productParams);
+
+        return new ResultData(1,"ok",productDetail);
     }
 
     @Override
@@ -62,17 +89,7 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
-    @Override
-    public ResultData allProImg() {
 
-        List<Product> productList = productMapper.allProImg();
-
-        if (productList != null && productList.size() > 0 ){
-            return new ResultData(1,"ok",productList);
-        }
-
-        return new ResultData(0,"no");
-    }
 
 
 }

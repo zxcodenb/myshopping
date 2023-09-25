@@ -55,5 +55,9 @@ public class ProductImg implements Serializable {
      */
     private LocalDateTime updatedTime;
 
+    private Product product;
+
+
+
 
 }

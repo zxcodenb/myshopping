@@ -10,18 +10,23 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("products")
 public class ProductController {
 
+
     @Autowired
-    private ProductService productService;
+    private  ProductService productService;
 
-    @GetMapping("{categoryId}")
-    public ResultData selProduct(@PathVariable int categoryId, @RequestParam(defaultValue = "1") Integer pageNum,@RequestParam(defaultValue = "5") Integer pageSize ){
 
-        ResultData resultData = productService.selectBycateGoryId(categoryId, pageNum, pageSize);
+    @GetMapping("{productId}")
+    public ResultData detail(@PathVariable Integer productId){
+
+        ResultData resultData = productService.selProductByDetail(productId);
 
         return resultData;
 
-
     }
+
+
+
+
 
 
 }

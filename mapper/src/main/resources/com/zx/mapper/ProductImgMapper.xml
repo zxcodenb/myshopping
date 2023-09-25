@@ -3,7 +3,64 @@
 <mapper namespace="com.zx.mapper.ProductImgMapper">
 
 
+    <resultMap id="AllProductImg" type="com.zx.pojo.ProductImg">
 
+        <id property="id" column="id"/>
+        <result property="itemId" column="item_id"/>
+        <result property="url" column="url"/>
+        <result property="isMain" column="is_main"/>
+        <association property="product" javaType="com.zx.pojo.Product">
+            <id property="productId" column="product_id"/>
+            <result property="productName" column="product_name"/>
+            <result property="categoryId" column="category_id"/>
+            <result property="soldNum" column="sold_num"/>
+        </association>
+
+    </resultMap>
+
+    <select id="allProImg" resultMap="AllProductImg">
+        select product_id,
+               product_name,
+               category_id,
+               sold_num,
+               id,
+               item_id,
+               url,
+               is_main
+        from product,
+             product_img
+        where item_id = product_id
+          and is_main = 1
+        order by sold_num desc
+        ;
+    </select>
+
+
+
+
+
+
+    <resultMap id="imgById" type="ProductImg">
+        <id property="id" column="id"/>
+        <result property="itemId" column="item_id"/>
+        <result property="url" column="url"/>
+        <result property="isMain" column="is_main"/>
+        <association property="product" javaType="com.zx.pojo.Product">
+            <id property="productId" column="product_id"/>
+        </association>
+
+    </resultMap>
+
+
+    <select id="selImgById" resultMap="imgById">
+        select
+            id,item_id,url,is_main,product_id
+        from
+            product_img,product
+        where
+            item_id = #{productId}
+        ;
+    </select>
 
 
 </mapper>

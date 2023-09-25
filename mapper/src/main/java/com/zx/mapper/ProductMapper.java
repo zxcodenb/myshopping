@@ -15,11 +15,5 @@ import java.util.List;
  */
 public interface ProductMapper extends BaseMapper<Product> {
 
-    Product selOne(int id);
-
-    List<Product> allProImg();
-
-
-
 
 }

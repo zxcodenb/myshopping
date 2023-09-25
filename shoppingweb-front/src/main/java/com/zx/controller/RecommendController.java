@@ -1,5 +1,6 @@
 package com.zx.controller;
 
+import com.zx.ProductImgService;
 import com.zx.ProductService;
 import com.zx.pojo.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class RecommendController {
 
     @Autowired
-    private ProductService productService;
+    private ProductImgService productImgService;
 
 
     //首页推荐
     @GetMapping
     public ResultData recomme(){
-        ResultData resultData = productService.allProImg();
+        ResultData resultData = productImgService.allProImg();
         return resultData;
     }
 }

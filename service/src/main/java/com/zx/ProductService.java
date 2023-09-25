@@ -9,9 +9,10 @@ public interface ProductService {
 
     ResultData selectByPage(int pageNum,int pageSize);
 
-    Product selOne(int id);
+//    商品详情页
+    ResultData selProductByDetail(int productId );
 
+//    商品分类
     ResultData selectBycateGoryId(int categoryId , int pageNum,int pageSize);
 
-    ResultData allProImg();
 }
