@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface ProductImgMapper extends BaseMapper<ProductImg> {
 
-// TODO: 2023/9/25  修改img的实体类
+
     List<Product> allProImg();
 
     List<ProductImg> selImgById(int productId);

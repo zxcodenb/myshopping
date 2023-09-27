@@ -36,10 +36,6 @@
     </select>
 
 
-
-
-
-
     <resultMap id="imgById" type="ProductImg">
         <id property="id" column="id"/>
         <result property="itemId" column="item_id"/>
@@ -53,12 +49,14 @@
 
 
     <select id="selImgById" resultMap="imgById">
-        select
-            id,item_id,url,is_main,product_id
-        from
-            product_img,product
-        where
-            item_id = #{productId}
+        select id,
+               item_id,
+               url,
+               is_main,
+               product_id
+        from product_img,
+             product
+        where item_id = #{productId}
         ;
     </select>
 
